@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  superset-cont:
+    build: .
+    container_name: superset-cont
+    environment:
+      SUPERSET_SECRET_KEY: ujjawal_password
+      # SUPERSET_DATABASE_URI: postgresql+psycopg2://postgres:ujjawaldbtpostgres@postgres-visualization:5432/dbt_postgres
+    volumes:
+      - ./superset:/app/superset_home
+    ports:
+      - 9041:8088
+    entrypoint: bash /entrypoint_custom/entrypoint.sh
+    command: ""
+    networks:
+      - superset-network
+    restart: always
+
+  postgres-visualization:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ujjawaldbtpostgres
+      POSTGRES_DB: postgresvisualization
+    ports:
+      - 9040:5432
+    networks:
+      - superset-network
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+
+networks:
+  superset-network:
+    driver: bridge
