@@ -7,15 +7,9 @@ docker-compose up -d
 ```
 Go TO [Dashboard URL](http://0.0.0.0:9041/superset/welcome/)
 
-### Link for Dataset
+### Postgres Connection
 
-Populate this csv in Postgres DB 
-
-https://github.com/TheMrityunjayPathak/IndiaPopulationAnalysis/blob/main/india_population.csv
-
-
-![Postgres Image of table](src/postgres_image_data.png)
-
+Go to create dataset then data
 
 ![Postgres Connection](src/Postgres_connection.png)
 
