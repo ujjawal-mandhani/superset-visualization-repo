@@ -1,5 +1,3 @@
 FROM apache/superset
-USER root
-COPY entrypoint.sh /entrypoint_custom/entrypoint.sh
-RUN chmod +x /entrypoint_custom/entrypoint.sh
-USER superset
+ENTRYPOINT [""]
+CMD [ "sh", "-c", "superset fab create-admin --username admin --firstname Superset --lastname Admin --email admin@superset.com --password admin && superset db upgrade && superset init && /usr/bin/run-server.sh" ]
